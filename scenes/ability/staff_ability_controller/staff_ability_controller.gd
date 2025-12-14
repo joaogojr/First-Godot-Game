@@ -32,3 +32,8 @@ func on_timer_timeout():
 	var staff_instance = staff_ability.instantiate() as Node2D
 	player.get_parent().add_child(staff_instance)
 	staff_instance.global_position = enemies[0].global_position
+	staff_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
+	
+	
+	var enemy_direction = enemies[0].global_position - staff_instance.global_position
+	staff_instance.rotation = enemy_direction.angle()

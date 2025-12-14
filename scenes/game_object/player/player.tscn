@@ -1,19 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3wfxb47tlwtn"]
+[gd_scene load_steps=6 format=3 uid="uid://b3wfxb47tlwtn"]
 
-[ext_resource type="Script" uid="uid://c23er5pwk3r3e" path="res://scenes/player/player.gd" id="1_dovo2"]
-[ext_resource type="Texture2D" uid="uid://pb31j6q7ufqi" path="res://scenes/player/player.png" id="2_gmlin"]
+[ext_resource type="Script" uid="uid://c23er5pwk3r3e" path="res://scenes/game_object/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://pb31j6q7ufqi" path="res://scenes/game_object/player/player.png" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://cssdj5q3yh01p" path="res://scenes/ability/staff_ability_controller/staff_ability_controller.tscn" id="2_lvxji"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3670"]
+radius = 31.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvxji"]
 radius = 5.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
+collision_mask = 9
+motion_mode = 1
 script = ExtResource("1_dovo2")
 
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="StaffAbilityController" parent="AbilityManager" instance=ExtResource("2_lvxji")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_s3670")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

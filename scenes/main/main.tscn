@@ -1,11 +1,23 @@
-[gd_scene load_steps=5 format=4 uid="uid://ehqnm4qcsb1b"]
+[gd_scene load_steps=8 format=4 uid="uid://ehqnm4qcsb1b"]
 
-[ext_resource type="PackedScene" uid="uid://b3wfxb47tlwtn" path="res://scenes/player/player.tscn" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://cxsahq0u63xw0" path="res://scenes/ui/arena_time_ui.tscn" id="1_6q06x"]
+[ext_resource type="PackedScene" uid="uid://b3wfxb47tlwtn" path="res://scenes/game_object/player/player.tscn" id="1_hyk8p"]
 [ext_resource type="TileSet" uid="uid://bimogvkigbnsx" path="res://resources/tileset.tres" id="1_iuonh"]
-[ext_resource type="PackedScene" uid="uid://cp5xae0yyw3a3" path="res://scenes/game_camera/game_camera.tscn" id="1_k2fmo"]
-[ext_resource type="PackedScene" uid="uid://c0x6itvi4r3yr" path="res://scenes/basic_enemy/basic_enemy.tscn" id="4_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://cp5xae0yyw3a3" path="res://scenes/game_object/game_camera/game_camera.tscn" id="1_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://crbobk7hk3imm" path="res://scenes/manager/arena_time_manager.tscn" id="2_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://cfxksjmgfrdrx" path="res://scenes/manager/enemy_manager.tscn" id="4_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://bocs4jimnd40q" path="res://scenes/manager/experience_manager.tscn" id="4_yyfjg"]
 
 [node name="Main" type="Node"]
+
+[node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("1_6q06x")]
+arena_time_manager = NodePath("../ArenaTimeManager")
+
+[node name="ArenaTimeManager" parent="." instance=ExtResource("2_ow5a4")]
+
+[node name="EnemyManager" parent="." instance=ExtResource("4_l3cfh")]
+
+[node name="ExperienceManager" parent="." instance=ExtResource("4_yyfjg")]
 
 [node name="GameCamera" parent="." instance=ExtResource("1_k2fmo")]
 
@@ -14,12 +26,4 @@ tile_map_data = PackedByteArray("AAAHAAgAAAAAAAQAAAAIAAgAAAAAAAQAAAAIAAcAAAABAAQ
 tile_set = ExtResource("1_iuonh")
 
 [node name="player" parent="." instance=ExtResource("1_hyk8p")]
-position = Vector2(73, 57)
-
-[node name="BasicEnemy" parent="." instance=ExtResource("4_l3cfh")]
-position = Vector2(481, 45)
-collision_layer = 0
-
-[node name="BasicEnemy2" parent="." instance=ExtResource("4_l3cfh")]
-position = Vector2(90, 341)
-collision_layer = 0
+position = Vector2(315, 183)
