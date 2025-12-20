@@ -1,6 +1,7 @@
 extends Node
 
 @export var staff_ability: PackedScene
+var damage = 5
 
 const MAX_RANGE = 150
 
@@ -29,8 +30,9 @@ func on_timer_timeout():
 		return a_distance < b_distance
 	)
 	
-	var staff_instance = staff_ability.instantiate() as Node2D
+	var staff_instance = staff_ability.instantiate() as StaffAbility
 	player.get_parent().add_child(staff_instance)
+	staff_instance.hitbox_component.damage = damage
 	staff_instance.global_position = enemies[0].global_position
 	staff_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
 	
