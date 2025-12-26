@@ -35,7 +35,8 @@ func on_timer_timeout():
 	)
 	
 	var staff_instance = staff_ability.instantiate() as StaffAbility
-	player.get_parent().add_child(staff_instance)
+	var foreground_layer = get_tree().get_first_node_in_group('foreground_layer')
+	foreground_layer.add_child(staff_instance)
 	staff_instance.hitbox_component.damage = damage
 	staff_instance.global_position = enemies[0].global_position
 	staff_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
