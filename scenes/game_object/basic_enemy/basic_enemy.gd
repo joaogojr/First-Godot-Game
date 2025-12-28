@@ -7,6 +7,8 @@ const MAX_SPEED = 45
 
 
 func _process(delta: float) -> void:
+	if !get_direction_to_player():
+		return
 	var direction = get_direction_to_player()
 	velocity = direction * MAX_SPEED
 	move_and_slide()
